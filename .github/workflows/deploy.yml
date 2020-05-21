@@ -52,5 +52,6 @@ jobs:
       - name: Push to pages repository
         uses: ad-m/github-push-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           directory: anoop901.github.io
+          repository: anoop901/anoop901.github.io
