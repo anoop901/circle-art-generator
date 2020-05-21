@@ -50,8 +50,9 @@ jobs:
           git commit -m "New release of mandala-generator"
 
       - name: Push to pages repository
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          directory: anoop901.github.io
-          repository: anoop901/anoop901.github.io
+        env:
+          PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: |
+          cd anoop901.github.io
+          git remote set-url origin https://anoop901:$PERSONAL_ACCESS_TOKEN@github.com/anoop901/anoop901.github.io.git
+          git push
