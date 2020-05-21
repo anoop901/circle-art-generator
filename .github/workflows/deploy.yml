@@ -48,4 +48,8 @@ jobs:
           git config user.name "Anoop Naravaram"
           git add mandala-generator
           git commit -m "New release of mandala-generator"
-          git push
+
+      - name: Push to pages repository
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
