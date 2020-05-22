@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react",
+    "downlevelIteration": true,
+    "target": "es6",
+    "module": "commonjs"
+  }
+}
