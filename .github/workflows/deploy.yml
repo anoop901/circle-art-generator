@@ -28,3 +28,4 @@ jobs:
           BRANCH: master
           FOLDER: dist
           TARGET_FOLDER: mandala-generator
+          ACTIONS_STEP_DEBUG: true
