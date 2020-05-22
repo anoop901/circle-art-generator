@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "parcel build index.html --public-url /mandala-generator",
+    "deploy": "gh-pages -d dist -r https://github.com/anoop901/anoop901.github.io.git -b master -e mandala-generator -m \"Update mandala-generator.\""
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
   },
   "devDependencies": {
     "@types/react-dom": "^16.9.8",
+    "gh-pages": "^2.2.0",
     "typescript": "^3.9.3"
   }
 }
