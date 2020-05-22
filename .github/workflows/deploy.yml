@@ -22,7 +22,7 @@ jobs:
         run: npx parcel build index.html
 
       - name: Deploy to Github Pages
-      - uses: JamesIves/github-pages-deploy-acton@releases/v3
+        uses: JamesIves/github-pages-deploy-acton@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
           BRANCH: master
