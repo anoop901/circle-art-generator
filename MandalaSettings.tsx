@@ -150,7 +150,7 @@ export default function MandalaSettings(props: P) {
               )
             );
           }}
-          min={0}
+          min={1}
           max={100}
           valueLabelDisplay="auto"
         />
