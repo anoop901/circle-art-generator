@@ -64,7 +64,7 @@ export default function MandalaSettings(props: P) {
                   ),
                   radius: Math.ceil(outermostLayer.radius * 0.9),
                   phase: (outermostLayer.phase + 0.5) % 1.0,
-                  color: `hsl(${Math.floor(Math.random() * 360)},100%,50%)`,
+                  color: `hsl(${props.mandala.layers.size * 60},100%,50%)`,
                 };
                 console.log(newLayer);
                 props.setMandala(
