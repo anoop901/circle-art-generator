@@ -25,6 +25,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
           ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          REPOSITORY_NAME: anoop901/anoop901.github.io
           BRANCH: master
           FOLDER: dist
           TARGET_FOLDER: mandala-generator
