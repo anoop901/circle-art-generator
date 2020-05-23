@@ -11,8 +11,12 @@ import {
   Button,
   InputLabel,
   TextField,
+  FormControl,
+  Select,
+  MenuItem,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
+import AddIcon from "@material-ui/icons/Add";
 import Mandala from "./Mandala";
 import { setIn, removeIn, update } from "immutable";
 
@@ -27,58 +31,67 @@ export default function MandalaSettings(props: P) {
   return (
     <Grid container direction="column" spacing={2}>
       <Grid item>
-        <Paper>
-          <List>
-            {props.mandala.layers.map((layer, i) => (
-              <ListItem
-                key={i}
-                button
-                selected={i === currentLayerIdx}
-                onClick={() => {
-                  setCurrentLayerIdx(i);
-                }}
-              >
-                <ListItemText>Layer #{i + 1}</ListItemText>
-                <ListItemSecondaryAction>
-                  <IconButton
-                    edge="end"
-                    disabled={props.mandala.layers.size == 1}
+        <Grid container>
+          <Grid item>
+            <FormControl>
+              <InputLabel>Layer</InputLabel>
+              <Select value={currentLayerIdx}>
+                {props.mandala.layers.map((layer, i) => (
+                  <MenuItem
+                    key={i}
+                    button
+                    value={i}
                     onClick={() => {
-                      if (currentLayerIdx == props.mandala.layers.size - 1) {
-                        setCurrentLayerIdx(props.mandala.layers.size - 2);
-                      }
-                      props.setMandala(removeIn(props.mandala, ["layers", i]));
+                      setCurrentLayerIdx(i);
                     }}
                   >
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </ListItem>
-            ))}
-          </List>
-        </Paper>
+                    Layer #{i + 1}
+                    {/* <ListItemSecondaryAction>
+                  </ListItemSecondaryAction> */}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item>
+            <IconButton
+              onClick={() => {
+                props.setMandala(
+                  update(props.mandala, "layers", (prevLayers) =>
+                    prevLayers.push({
+                      color: "red",
+                      distanceFromCenter: 107,
+                      numberOfCircles: 12,
+                      radius: 25,
+                      phase: 0,
+                    })
+                  )
+                );
+                setCurrentLayerIdx(props.mandala.layers.size);
+              }}
+            >
+              <AddIcon></AddIcon>
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <IconButton
+              edge="end"
+              disabled={props.mandala.layers.size == 1}
+              onClick={() => {
+                if (currentLayerIdx == props.mandala.layers.size - 1) {
+                  setCurrentLayerIdx(props.mandala.layers.size - 2);
+                }
+                props.setMandala(
+                  removeIn(props.mandala, ["layers", currentLayerIdx])
+                );
+              }}
+            >
+              <DeleteIcon />
+            </IconButton>
+          </Grid>
+        </Grid>
       </Grid>
-      <Grid item>
-        <Button
-          variant="contained"
-          onClick={() => {
-            props.setMandala(
-              update(props.mandala, "layers", (prevLayers) =>
-                prevLayers.push({
-                  color: "red",
-                  distanceFromCenter: 107,
-                  numberOfCircles: 12,
-                  radius: 25,
-                  phase: 0,
-                })
-              )
-            );
-            setCurrentLayerIdx(props.mandala.layers.size);
-          }}
-        >
-          Add layer
-        </Button>
-      </Grid>
+      <Grid item></Grid>
       <Grid item>
         <InputLabel>Distance to center</InputLabel>
         <Slider
