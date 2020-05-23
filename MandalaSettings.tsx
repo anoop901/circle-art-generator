@@ -17,7 +17,7 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import AddIcon from "@material-ui/icons/Add";
-import Mandala from "./Mandala";
+import Mandala, { MandalaLayer } from "./Mandala";
 import { setIn, removeIn, update } from "immutable";
 
 interface P {
@@ -56,15 +56,20 @@ export default function MandalaSettings(props: P) {
           <Grid item>
             <IconButton
               onClick={() => {
+                const outermostLayer = getOutermostLayer(props.mandala);
+                const newLayer: MandalaLayer = {
+                  numberOfCircles: outermostLayer.numberOfCircles,
+                  distanceFromCenter: Math.floor(
+                    outermostLayer.distanceFromCenter * 0.9 + 500 * 0.1
+                  ),
+                  radius: Math.ceil(outermostLayer.radius * 0.9),
+                  phase: (outermostLayer.phase + 0.5) % 1.0,
+                  color: `hsl(${Math.floor(Math.random() * 360)},100%,50%)`,
+                };
+                console.log(newLayer);
                 props.setMandala(
                   update(props.mandala, "layers", (prevLayers) =>
-                    prevLayers.push({
-                      color: "red",
-                      distanceFromCenter: 107,
-                      numberOfCircles: 12,
-                      radius: 25,
-                      phase: 0,
-                    })
+                    prevLayers.push(newLayer)
                   )
                 );
                 setCurrentLayerIdx(props.mandala.layers.size);
@@ -188,4 +193,14 @@ export default function MandalaSettings(props: P) {
       </Grid>
     </Grid>
   );
+}
+
+function getOutermostLayer(mandala: Mandala): MandalaLayer {
+  let outermostLayer = mandala.layers.get(0)!;
+  for (const layer of mandala.layers) {
+    if (layer.distanceFromCenter > outermostLayer.distanceFromCenter) {
+      outermostLayer = layer;
+    }
+  }
+  return outermostLayer;
 }
