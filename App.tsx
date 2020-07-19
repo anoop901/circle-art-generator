@@ -27,6 +27,7 @@ export default function App() {
   });
   return (
     <Container>
+      Hello world
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={9}>
           <MandalaCanvas mandala={mandala}></MandalaCanvas>
