@@ -21,7 +21,7 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Build the web bundle
-        run: npx parcel build index.html
+        run: npm run build
 
       - name: Deploy to Github pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
