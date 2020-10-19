@@ -1,16 +1,18 @@
-name: Build and Deploy
+name: Deploy
 
 on:
   push:
     branches: [master]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.1
+        with:
+          persist-credentials: false
 
       - name: Install dependencies
         run: npm install
@@ -24,8 +26,7 @@ jobs:
       - name: Deploy to Github pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          REPOSITORY_NAME: anoop901/anoop901.github.io
-          BRANCH: master
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
           FOLDER: dist
-          TARGET_FOLDER: mandala-generator
+          TARGET_FOLDER: /
