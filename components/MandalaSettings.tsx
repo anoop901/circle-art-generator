@@ -14,10 +14,10 @@ import {
   FormControl,
   Select,
   MenuItem,
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
-import AddIcon from "@material-ui/icons/Add";
-import Mandala, { MandalaLayer } from "./Mandala";
+} from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import AddIcon from "@mui/icons-material/Add";
+import Mandala, { MandalaLayer } from "../model/Mandala";
 import { setIn, removeIn, update } from "immutable";
 
 interface P {
@@ -39,7 +39,6 @@ export default function MandalaSettings(props: P) {
                 {props.mandala.layers.map((layer, i) => (
                   <MenuItem
                     key={i}
-                    button
                     value={i}
                     onClick={() => {
                       setCurrentLayerIdx(i);

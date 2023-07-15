@@ -1,25 +1,12 @@
 import * as React from "react";
-import Mandala from "./Mandala";
-import { makeStyles } from "@material-ui/core";
+import Mandala from "../model/Mandala";
 
 interface P {
   mandala: Mandala;
 }
 
-const useStyles = makeStyles({
-  centered: {
-    display: "block",
-    marginLeft: "auto",
-    marginRight: "auto",
-    width: "100%",
-    maxWidth: 500,
-  },
-});
-
 export default function MandalaCanvas(props: P) {
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
-
-  const classes = useStyles();
 
   React.useEffect(() => {
     const canvasElem = canvasRef.current!;
@@ -30,7 +17,13 @@ export default function MandalaCanvas(props: P) {
   return (
     <canvas
       ref={canvasRef}
-      className={classes.centered}
+      style={{
+        display: "block",
+        marginLeft: "auto",
+        marginRight: "auto",
+        width: "100%",
+        maxWidth: 500,
+      }}
       width={500}
       height={500}
     ></canvas>

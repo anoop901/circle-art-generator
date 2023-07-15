@@ -1,12 +1,14 @@
-import * as React from "react";
-import MandalaCanvas from "./MandalaCanvas";
-import Mandala from "./Mandala";
-import MandalaSettings from "./MandalaSettings";
+"use client";
+import Mandala from "@/model/Mandala";
+import MandalaCanvas from "@/components/MandalaCanvas";
+import MandalaSettings from "@/components/MandalaSettings";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
 import { List } from "immutable";
-import { Container, Grid, Paper } from "@material-ui/core";
+import { useState } from "react";
 
-export default function App() {
-  const [mandala, setMandala] = React.useState<Mandala>({
+export default function Home() {
+  const [mandala, setMandala] = useState<Mandala>({
     layers: List([
       {
         color: "white",
