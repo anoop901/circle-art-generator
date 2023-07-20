@@ -5,8 +5,8 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mandala Generator",
-  description: "Generate and customize a mandala pattern using sliders.",
+  title: "Circle Art Generator",
+  description: "Generate and customize a pattern of circles using sliders.",
 };
 
 export default function RootLayout({

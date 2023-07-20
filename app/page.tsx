@@ -27,9 +27,9 @@ export default function Home() {
   });
   return (
     <div className="flex flex-col py-5 gap-5">
-      <h1 className="text-3xl text-center font-bold">Mandala Generator</h1>
+      <h1 className="text-3xl text-center font-bold">Circle Art Generator</h1>
       <p className="text-center max-w-xl self-center">
-        This tool lets you create a circle-based design composed of multiple
+        This tool lets you create a circle-based pattern composed of multiple
         layers. Each layer is a set of circles arranged around the center. You
         can customize each layer using the sliders, and add more layers.
       </p>

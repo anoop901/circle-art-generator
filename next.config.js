@@ -1,11 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  basePath: "/mandala-generator",
+  basePath: "/circle-art-generator",
   async redirects() {
     return [
       {
         source: "/",
-        destination: "/mandala-generator",
+        destination: "/circle-art-generator",
         basePath: false,
         permanent: true,
       },
