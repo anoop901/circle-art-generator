@@ -17,13 +17,7 @@ export default function MandalaCanvas(props: P) {
   return (
     <canvas
       ref={canvasRef}
-      style={{
-        display: "block",
-        marginLeft: "auto",
-        marginRight: "auto",
-        width: "100%",
-        maxWidth: 500,
-      }}
+      className="max-w-full"
       width={500}
       height={500}
     ></canvas>

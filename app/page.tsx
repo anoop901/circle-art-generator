@@ -2,8 +2,6 @@
 import Mandala from "@/model/Mandala";
 import MandalaCanvas from "@/components/MandalaCanvas";
 import MandalaSettings from "@/components/MandalaSettings";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
 import { List } from "immutable";
 import { useState } from "react";
 
@@ -28,18 +26,20 @@ export default function Home() {
     center: { x: 250, y: 250 },
   });
   return (
-    <Container>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={9}>
-          <MandalaCanvas mandala={mandala}></MandalaCanvas>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <MandalaSettings
-            mandala={mandala}
-            setMandala={setMandala}
-          ></MandalaSettings>
-        </Grid>
-      </Grid>
-    </Container>
+    <div className="flex flex-col py-5 gap-5">
+      <h1 className="text-3xl text-center font-bold">Mandala Generator</h1>
+      <p className="text-center max-w-xl self-center">
+        This tool lets you create a circle-based design composed of multiple
+        layers. Each layer is a set of circles arranged around the center. You
+        can customize each layer using the sliders, and add more layers.
+      </p>
+      <div className="flex gap-10 flex-wrap justify-center">
+        <MandalaCanvas mandala={mandala}></MandalaCanvas>
+        <MandalaSettings
+          mandala={mandala}
+          setMandala={setMandala}
+        ></MandalaSettings>
+      </div>
+    </div>
   );
 }
