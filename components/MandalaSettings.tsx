@@ -3,7 +3,6 @@ import {
   Slider,
   IconButton,
   InputLabel,
-  TextField,
   FormControl,
   Select,
   MenuItem,
@@ -12,6 +11,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import Mandala, { MandalaLayer } from "../model/Mandala";
 import { setIn, removeIn, update } from "immutable";
+import { CompactPicker } from "react-color";
 
 interface P {
   mandala: Mandala;
@@ -24,7 +24,7 @@ export default function MandalaSettings(props: P) {
   );
 
   return (
-    <div className="flex flex-col gap-2 w-56 p-2">
+    <div className="flex flex-col gap-2 p-2">
       <div className="flex flex-row gap-2 items-center">
         <FormControl className="grow">
           <InputLabel>Layer</InputLabel>
@@ -158,17 +158,17 @@ export default function MandalaSettings(props: P) {
           valueLabelDisplay="auto"
         />
       </div>
-      <TextField
-        fullWidth
-        label="Color"
-        value={props.mandala.layers.get(currentLayerIdx)!.color}
-        onChange={(event) => {
-          const newValue = event.target.value;
-          props.setMandala(
-            setIn(props.mandala, ["layers", currentLayerIdx, "color"], newValue)
-          );
-        }}
-      ></TextField>
+      <div>
+        <InputLabel>Color</InputLabel>
+        <CompactPicker
+          color={props.mandala.layers.get(currentLayerIdx)!.color}
+          onChange={(e) => {
+            props.setMandala(
+              setIn(props.mandala, ["layers", currentLayerIdx, "color"], e.hex)
+            );
+          }}
+        />
+      </div>
     </div>
   );
 }

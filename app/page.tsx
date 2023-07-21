@@ -9,14 +9,14 @@ export default function Home() {
   const [mandala, setMandala] = useState<Mandala>({
     layers: List([
       {
-        color: "white",
+        color: "#ffffff",
         distanceFromCenter: 0,
         numberOfCircles: 1,
         radius: 70,
         phase: 0,
       },
       {
-        color: "red",
+        color: "#f44e3b",
         distanceFromCenter: 107,
         numberOfCircles: 12,
         radius: 25,
