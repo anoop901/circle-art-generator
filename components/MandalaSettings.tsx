@@ -28,16 +28,30 @@ export default function MandalaSettings(props: P) {
       <div className="flex flex-row gap-2 items-center">
         <FormControl className="grow">
           <InputLabel>Layer</InputLabel>
-          <Select label="Layer" value={currentLayerIdx}>
+          <Select
+            label="Layer"
+            SelectDisplayProps={{ className: "flex items-center gap-2" }}
+            value={currentLayerIdx}
+          >
             {props.mandala.layers.map((layer, i) => (
               <MenuItem
+                className="flex items-center gap-2"
                 key={i}
                 value={i}
                 onClick={() => {
                   setCurrentLayerIdx(i);
                 }}
               >
-                Layer #{i + 1}
+                <span
+                  className="rounded-full p-2 border-black border-2"
+                  style={{ backgroundColor: layer.color }}
+                ></span>
+                {layer.numberOfCircles > 1 ? (
+                  <>
+                    <span>{"\u00d7"}</span>
+                    <span>{layer.numberOfCircles}</span>
+                  </>
+                ) : null}
               </MenuItem>
             ))}
           </Select>
