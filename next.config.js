@@ -7,7 +7,7 @@ const nextConfig = {
         source: "/",
         destination: "/circle-art-generator",
         basePath: false,
-        permanent: true,
+        permanent: false,
       },
     ];
   },
