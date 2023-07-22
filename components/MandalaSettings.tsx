@@ -10,8 +10,9 @@ import {
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import Mandala, { MandalaLayer } from "../model/Mandala";
-import { setIn, removeIn, update } from "immutable";
+import { setIn, removeIn, update, updateIn, List } from "immutable";
 import { CompactPicker } from "react-color";
+import { v4 as uuid } from "uuid";
 
 interface P {
   mandala: Mandala;
@@ -33,33 +34,37 @@ export default function MandalaSettings(props: P) {
             SelectDisplayProps={{ className: "flex items-center gap-2" }}
             value={currentLayerIdx}
           >
-            {props.mandala.layers.map((layer, i) => (
-              <MenuItem
-                className="flex items-center gap-2"
-                key={i}
-                value={i}
-                onClick={() => {
-                  setCurrentLayerIdx(i);
-                }}
-              >
-                <span
-                  className="rounded-full p-2 border-black border-2"
-                  style={{ backgroundColor: layer.color }}
-                ></span>
-                {layer.numberOfCircles > 1 ? (
-                  <>
-                    <span>{"\u00d7"}</span>
-                    <span>{layer.numberOfCircles}</span>
-                  </>
-                ) : null}
-              </MenuItem>
-            ))}
+            {props.mandala.layers
+              .map((layer, index) => ({ layer, index }))
+              .sortBy(({ layer }) => layer.distanceFromCenter)
+              .map(({ layer, index }) => (
+                <MenuItem
+                  className="flex items-center gap-2"
+                  value={index}
+                  key={layer.id}
+                  onClick={() => {
+                    setCurrentLayerIdx(index);
+                  }}
+                >
+                  <span
+                    className="rounded-full p-2 border-black border-2"
+                    style={{ backgroundColor: layer.color }}
+                  ></span>
+                  {layer.numberOfCircles > 1 ? (
+                    <>
+                      <span>{"\u00d7"}</span>
+                      <span>{layer.numberOfCircles}</span>
+                    </>
+                  ) : null}
+                </MenuItem>
+              ))}
           </Select>
         </FormControl>
         <IconButton
           onClick={() => {
             const outermostLayer = getOutermostLayer(props.mandala);
             const newLayer: MandalaLayer = {
+              id: uuid(),
               numberOfCircles: outermostLayer.numberOfCircles,
               distanceFromCenter: Math.floor(
                 outermostLayer.distanceFromCenter * 0.9 + 500 * 0.1

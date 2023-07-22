@@ -1,6 +1,7 @@
 import { List } from "immutable";
 
 export interface MandalaLayer {
+  id: string;
   color: string;
   distanceFromCenter: number;
   numberOfCircles: number;

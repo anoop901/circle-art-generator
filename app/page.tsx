@@ -5,10 +5,13 @@ import MandalaSettings from "@/components/MandalaSettings";
 import { List } from "immutable";
 import { useState } from "react";
 
+import { v4 as uuid } from "uuid";
+
 export default function Home() {
   const [mandala, setMandala] = useState<Mandala>({
     layers: List([
       {
+        id: uuid(),
         color: "#ffffff",
         distanceFromCenter: 0,
         numberOfCircles: 1,
@@ -16,6 +19,7 @@ export default function Home() {
         phase: 0,
       },
       {
+        id: uuid(),
         color: "#f44e3b",
         distanceFromCenter: 107,
         numberOfCircles: 12,
